@@ -55,32 +55,54 @@
 
 # Part 4
 
-a = "Xyzzy"
+# a = "Xyzzy"
 
-def my_value(b)
-  b[2] = '-'
-end
+# def my_value(b)
+#   b[2] = '-'
+# end
 
-my_value(a)
-puts a
+# my_value(a)
+# puts a
 
-# Answer  = 
-# -
+# Answer  = Xy-zy
+# -v This problem looks remarkably similar to the first problem in this set. However, this time we are working with a string, and we are assigning to b[2] instead of b.
+
+# The result is quite different. When we were working with a numeric variable, no changes were made to a. This was due to the fact that numbers are immutable, and assignment merely changes the object that a variable references. Now, though, Strings are mutable - they can be modified - and, in particular, the method String#[]= is a mutating method; it actually modifies the string. Since we are actually modifying the string referenced by b, and b references the same string as a, the result from printing a shows an update to the value of the string.
 
 #---------------------------
 
 # Part 5
 
+a = "Xyzzy"
 
+def my_value(b)
+  b = 'yzzyX'
+end
 
-# Answer  = 
-# -
+my_value(a)
+puts a
+
+# Answer  = Xyzzy
+# - This problem is nearly identical to the previous problem, except this time we are assigning directly to the variable b. When my_value begins executing, b is set to reference the same string that is referenced by a. If we modify that string by using b, then that modification is reflected in a; it's the same string.
+
+# However, we are not modifying that string in this exercise. Instead, we are assigning a completely new string to b. Assignment never changes the value of an object; instead, it creates a new object, and then stores a reference to that object in the variable on the left. So, at the end of my_value, b references the string 'yzzyX', while a remains unchanged: it still references "Xyzzy".
+
+# So, how does this differ from b[2] = '-'? The key difference with b[2] = '-' is that this is not quite the same as object assignment; it is a call to a method named []=, and this method mutates the String referenced by b; it does not change what object b references, so a continues to reference the modified String.
+
+# To summarize, assignment to a variable (an object) never mutates the object that is referenced. However, don't take that too far: if you assign to b[2] like we did in the previous exercise, that's a completely different operation; that actually mutates the content of the String referenced by b.
 
 #---------------------------
 
 # Part 6
 
+a = 7
 
+def my_value(b)
+  b = a + a
+end
+
+my_value(a)
+puts a
 
 # Answer  = 
 # -
